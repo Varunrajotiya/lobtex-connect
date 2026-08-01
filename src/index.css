@@ -1,0 +1,77 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply font-body bg-surface-light text-slate-800 antialiased;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4 {
+    @apply font-display;
+  }
+
+  ::selection {
+    @apply bg-brand-300 text-brand-950;
+  }
+
+  /* Hide scrollbar for horizontal-scroll rows (testimonials/videos) but keep it functional */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+
+@layer components {
+  .glass {
+    @apply bg-white/70 backdrop-blur-md border border-white/40;
+  }
+
+  .glass-dark {
+    @apply bg-white/10 backdrop-blur-md border border-white/20;
+  }
+
+  .section-title {
+    @apply text-2xl sm:text-3xl font-bold text-slate-50 tracking-tight;
+  }
+
+  .section-subtitle {
+    @apply text-slate-500 text-sm sm:text-base mt-1;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-2xl bg-gradient-to-br from-brand-600 to-brand-800 text-white font-medium px-5 py-3 shadow-soft active:scale-95 transition-transform duration-150;
+  }
+
+  .card {
+    @apply rounded-2xl bg-white shadow-card border border-slate-100;
+  }
+}
+
+/* Simple ripple effect for buttons */
+.ripple {
+  position: relative;
+  overflow: hidden;
+}
+.ripple::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle, rgba(255,255,255,0.5) 10%, transparent 60%);
+  opacity: 0;
+  transform: scale(0);
+  transition: transform 0.5s ease, opacity 0.6s ease;
+}
+.ripple:active::after {
+  transform: scale(2.5);
+  opacity: 1;
+  transition: 0s;
+}
